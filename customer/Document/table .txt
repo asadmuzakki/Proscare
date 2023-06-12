@@ -1,0 +1,144 @@
+HTML : 
+ <!-- Table Perawat -->
+    <h1>Available Nurse</h1>
+    <table class="content-table">
+        <thead>
+          <tr>
+            <th>Select</th>
+            <!-- <th>No.</th> -->
+            <th>Rating</th>
+            <th>Nurse</th>
+            <th>CV</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>88,110</td>
+            <td>Domenic</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr class="active-row">
+            <td><input type="radio" name="cek"></td>
+            <td>72,400</td>
+            <td>Sally</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+          <tr>
+            <td><input type="radio" name="cek"></td>
+            <td>52,300</td>
+            <td>Nick</td>
+            <td><button type="button" class="cv"><a href="#">cv</a></button></td>
+          </tr>
+        </tbody>
+    </table>
+
+CSS:
+/* Tabel Perawat */
+h1 {
+    /* margin-left: 50rem; */
+    text-align: center;
+    padding-bottom: 2rem;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin-left: 22rem ;
+    font-size: 20px;
+    width: 70%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 1rem;
+}
+
+.content-table thead tr {
+    background-color: #7199BE;
+    color: black;
+    text-align: left;
+    font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid black;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid black;
+}
+
+.content-table tbody tr.active-row {
+    /* font-weight: bold; */
+    color: black;
+}
+
+input[type="radio"]{
+    height: 25px;
+    width: 25px;
+}
+
+button {
+    background-color: #7199BE;
+    font-size: 25px;
+    padding: 5px;
+    border-radius: 5px;
+    margin-left: 23rem;
+    margin-bottom: 7rem;
+    border: #fff;
+}
+button a { 
+    color : #fff
+}
+
+.cv {
+    width: 70px;
+    margin: auto;
+    font-weight: 600;
+    font-size: 15px;
+    border: #fff;
+}

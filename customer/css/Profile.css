@@ -1,0 +1,254 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;600;800&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", serif;
+    overflow: hidden;
+}
+
+/* Navbar */
+img {
+    height: 60px;
+    cursor: pointer;
+}
+
+li,a {
+    font-family: "Poppins";
+    font-weight: 520;
+    font-size: 17px;
+    color: black;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 100px;
+    position: relative;
+}
+
+.nav {
+    list-style: none;
+}
+
+.nav li {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.nav li a:hover {
+    color: #5cd4f4;
+}
+
+/* Profile */
+.container {
+    display: flex;
+    max-width: 60%;
+    margin: auto;
+    max-height: 100vh;
+}
+.contentProf{
+    display: flex;
+    border: 1px solid #2222;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+
+    width: 100%;
+    height: 80vh;
+}
+.propic{
+    margin-top: 3rem;
+    flex: 1 1 45rem;
+    border: 1px solid #2222;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+    position: absolute;
+    left : 0;
+    width: 450px;
+    height: 600px;
+    margin-left: 28rem;
+    /* width: 500px;
+    height: 600px;; */
+}
+.profile-pic {
+    height: 1000px;
+    width: 1000px;
+}
+.all{
+    width: 100%;
+    height: 100%;
+    padding: 0 3rem;
+    padding-top: 7rem;
+}
+.image{
+    display: block;
+    justify-content: center;
+    margin-right: 0;
+    border-radius: 10px;
+    margin-top: 3rem;
+    height: 40%;
+    width: 100%;
+    
+}
+.image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    display: none;
+}
+
+.profData{
+    flex: 1 1 45rem;
+    position: absolute;
+    right: 0;
+    margin-right: 28rem;
+    margin-top: 8rem;
+
+}
+
+.status {
+    display: block;
+    padding-top: 1rem;
+}
+
+.status label {
+    font-size: 1.3rem;
+}
+
+.inputStat {
+    display: flex;
+    gap : 1.5rem;   
+}
+
+.status input {
+    /* width: 495px; */
+    display: flex;
+    outline: none;
+    /* border: 1px solid black; */
+    border: 2px solid #2222;
+    font-size: 1rem;
+    border-radius: 10px;
+    width: 235px;
+    height: 50px;
+}
+
+.inputan{
+    display: block;
+    gap: 1rem;
+    align-items: center;
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+   
+}
+.name label{
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+.inputan .input{
+    width: 500px;
+    border: 2px solid #2222;
+    border-radius: 10px;
+    padding: 0.5rem 0;
+}
+.input input{
+    width: 495px;
+    outline: none;
+    border: none;
+    font-size: 1.3rem;
+}
+.submit{
+    display: block;
+	width: 30%;
+	padding: 12px 0;
+	border-radius: 15px;
+	background: #0071FF;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.submit:hover{
+    background-color: #005DD1;
+}
+
+
+.img-area {
+    margin-top: 4rem;
+	position: relative;
+	width: 100%;
+	height: 240px;
+	background: #2222;
+	margin-bottom: 30px;
+	border-radius: 15px;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+.img-area .icon {
+	font-size: 100px;
+}
+.img-area h3 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-bottom: 6px;
+}
+.img-area p {
+	color: #999;
+}
+.img-area p span {
+	font-weight: 600;
+}
+.img-area img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: 100;
+}
+.img-area::before {
+	content: attr(data-img);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, .5);
+	color: #fff;
+	font-weight: 500;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	pointer-events: none;
+	opacity: 0;
+	transition: all .3s ease;
+	z-index: 200;
+}
+.img-area.active:hover::before {
+	opacity: 1;
+}
+.select-image {
+	display: block;
+	width: 100%;
+	padding: 16px 0;
+	border-radius: 15px;
+	background: #0071FF;
+	color: #fff;
+	font-weight: 500;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.select-image:hover {
+	background: #005DD1;
+}

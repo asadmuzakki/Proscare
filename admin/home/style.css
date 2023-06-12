@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+* {
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0;
+}
+
+body {
+   font-family: "Poppins", serif;
+   /* background-color: #7199be; */
+}
+
+/* Header */
+img {
+   /* width: fit-content; */
+   height: 60px;
+   cursor: pointer;
+}
+
+li, a {
+   font-family: "Poppins";
+   font-weight: 520;
+   font-size: 17px;
+   color: black;
+   text-decoration: none;
+}
+
+.header {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 25px 100px;
+   position: relative;
+   background-color: #fff;
+}
+
+.nav {
+   list-style: none;
+}
+
+.nav li {
+   display:inline-block;
+   padding: 0 20px;
+}
+
+.nav li a:hover {
+   color: #5cd4f4;
+}
+
+/* Body */
+.timeline{
+   position: relative;
+   max-width: 1300px;
+   margin: 50px auto;
+   background-color: #def0ff;
+   box-shadow: 0 0 10px #464646;
+}
+
+.timeline h1{
+   color: #464646;
+   margin: 10px 10px 10px 10px;
+   padding-top: 30px;
+   font-size: 40px;
+   text-align: center;
+   text-shadow: 2px 2px 2px #464646;
+}
+
+.timeline-items{
+   padding: 0 20px 0 20px;
+   display: flex;
+   justify-content: center;
+}
+
+.container{
+   display: flex;
+   flex-direction: column;
+   padding: 30px 30px 30px 30px;
+   position: relative;
+   width: 25%;
+}
+
+.text-box{
+   padding: 10px 10px;
+   background: #fff;
+   position: relative;
+   border-radius: 5px;
+   font-size: 15px;
+   box-shadow: 0 0 10px #464646;
+   margin-bottom: 5%;
+}
+
+.text-box:hover{
+   transform: translateY(-0.7%);
+   box-shadow: 0 0 25px #464646;
+}
+
+.content{
+   width: 100%;
+   /* display: flex; */
+   margin-left: 60px;
+   justify-content: center;
+   text-align: justify;
+   align-items: center;
+   padding-top: 0px;
+   padding-bottom: 30px;
+}
+
+.content-item{
+   align-items: center;
+   width: 1400px;
+   display: flex;
+   padding: 35px 120px;
+}
+
+.card{
+   width: 350px;
+   height: fit-content;
+   background-color: #fff;
+   padding: 30px 30px;
+   box-shadow: 0 0 5px #464646;
+   margin: 10px 20px;
+   text-align: center;
+}
+
+.card img{
+   width: 70%;
+   height: auto;
+   filter: drop-shadow(0 0 5px #464646);
+}
+
+.card-text{
+   font-size: x-large;
+   margin-top: 10px;
+   text-align: center;
+} 
+
+.card:hover{
+   transform: translateY(-1%);
+   box-shadow: 0 0 15px #464646;
+}
+
+
+/* Tabel Perawat */
+h1 {
+   /* margin-left: 50rem; */
+   text-align: center;
+   padding-bottom: 2rem;
+}
+
+.content-table {
+   border-collapse: collapse;
+   margin-left: 15rem ;
+   font-size: 20px;
+   width: 70%;
+   border-radius: 5px 5px 0 0;
+   overflow: hidden;
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+   margin-bottom: 1rem;
+}
+
+.content-table thead tr {
+   background-color: #7199BE;
+   color: black;
+   text-align: left;
+   font-weight: bold;
+}
+
+.content-table th,
+.content-table td {
+   padding: 12px 15px;
+}
+
+.content-table tbody tr {
+   border-bottom: 1px solid black;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+   background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+   border-bottom: 2px solid black;
+}
+
+.content-table tbody tr.active-row {
+   /* font-weight: bold; */
+   color: black;
+}
+
+input[type="radio"]{
+   height: 25px;
+   width: 25px;
+}
+
+button {
+   background-color: #7199BE;
+   font-size: 25px;
+   padding: 5px;
+   border-radius: 5px;
+   margin-left: 23rem;
+   margin-bottom: 7rem;
+   border: #fff;
+}
+
+button a { 
+   color : #fff
+}
+
+.cv {
+   width: 70px;
+   margin: auto;
+   font-weight: 600;
+   font-size: 15px;
+   border: #fff;
+}
+
+/* Footer */
+footer {
+   font-family: "Poppins";
+   font-size: 20px;
+   font-weight: 520;
+   /* height: 500px; */
+   background-color: #282828;
+   height: auto;
+   width: 100%;
+   padding-top: 40px;
+   color: #fff;
+   /* overflow: hidden; */
+}
+
+.footer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   text-align: center;
+}
+
+.footer h3 {
+   font-size: 1.8rem;
+   font-weight: 400;
+   text-transform: capitalize;
+   line-height: 3rem;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.footer p {
+   max-width: 500px;
+   margin: 10px auto;
+   line-height: 28px;
+   font-size: 14px;
+}
+
+.social {
+   list-style: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin: 1rem 0 3rem 0;
+}
+
+.social li {
+   margin: 0 10px;
+}
+
+.social a i {
+   font-size: 1.1rem;
+   color: #fff;
+}
+
+.social a:hover i {
+   color: #5cd4f4;
+}
+
+.bottom {
+   background: #333439;
+   width: 100%;
+   padding: 20px 0;
+   text-align: center;
+   color: #909090;
+   font-size: 15px;
+   word-spacing: 2px;
+   text-transform: capitalize;
+}

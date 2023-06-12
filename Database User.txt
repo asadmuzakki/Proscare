@@ -1,0 +1,24 @@
+Database Proscare
+Admin
+user : admin
+pass : admin123
+
+Admin 2
+user : qnan
+pass : qnan673
+
+Perawat 
+user : tirta
+pass : tirta123
+
+Customer
+user : ajik
+pass : ajik123
+
+Customer 2
+user : user
+pass : user123
+
+Customer 3
+user : asad
+pass : asad123
