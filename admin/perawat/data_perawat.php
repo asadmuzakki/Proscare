@@ -6,6 +6,13 @@ if(!isset($_SESSION['admin'])){
     exit;
 }
 $perawat = query("SELECT * FROM perawat");
+foreach($perawat as $row){
+    if($row['cv'] === ""){
+        $cv = "no cv.pdf";
+    }else{
+        $cv = $row['cv'];
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,12 +27,13 @@ $perawat = query("SELECT * FROM perawat");
 <body>
     
     <div class="navbar">
-        <a href="../home/home.html"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
+        <a href="#"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="../../customer/Homepage.php">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+            <li><a href="../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>
@@ -53,7 +61,7 @@ $perawat = query("SELECT * FROM perawat");
                     <tr>
                         <td style="text-align: center;"><?= $i ?></td>
                         <td><?= $row['nama'] ?></td>
-                        <td>www.kehskseaf.com/leandro-paredes</td>
+                        <td><a href="../../Asset/cv/<?= $cv ?>">CV</a></td>
                         <td style="text-align: center;">
                             <a href="../perawat/detail_perawat.php?id=<?= $row['id'] ?>"><button class="detail-button">Detail</button></a>
                             <a href="../perawat/edit_perawat.php?id=<?= $row['id'] ?>"><button class="edit-button">Edit</button></a>

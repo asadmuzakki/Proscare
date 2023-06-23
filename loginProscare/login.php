@@ -13,6 +13,8 @@ if (isset($_SESSION["perawat"])) {
    header("Location: ../perawat/menu.html");
    exit;
 }
+
+// login customer
 if (isset($_POST["login"])) {
    $username = $_POST["user"];
    $password = $_POST["pass"];

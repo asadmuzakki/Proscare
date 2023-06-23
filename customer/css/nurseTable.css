@@ -51,7 +51,7 @@ h1 {
 
 .content-table {
     border-collapse: collapse;
-    margin-left: 22rem ;
+    margin: 0 15% 0 15% ;
     font-size: 20px;
     width: 70%;
     border-radius: 5px 5px 0 0;

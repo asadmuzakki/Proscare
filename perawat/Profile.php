@@ -19,9 +19,9 @@ require "../loginProscare/koneksi.php";
     <div class="header">
         <img src="Assets\Proscare Logo.png" alt="logo">
         <ul class="nav">
-            <li><a href="#"> Home </a></li>
-            <li><a href="#"> Menu </a></li>
-            <li><a href="#"> Profile </a></li>
+            <li><a href="../customer/Homepage.php"> Home </a></li>
+            <li><a href="../perawat/menu.php"> Menu </a></li>
+            <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
         </ul>
     </div>
 

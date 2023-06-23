@@ -22,7 +22,9 @@ if(!isset($_SESSION['customer'])){
       <img src="Assets\Proscare Logo.png" alt="logo">
       <ul class="nav">
           <li><a href="../customer/Homepage.php"> Home </a></li>
-          <li><a href="../customer/Payment.php"> Menu </a></li>
+          <li><a href="Payment.php"> Order </a></li>
+          <li><a href="riwayat customer.php"> Riwayat </a></li>
+          <li><a href="rating.php"> Rating </a></li>
           <li><a href="../Profile/profileCustomer.php"> Profile </a></li>
           <li><a href="../loginProscare/logout.php"> Logout </a></li>
       </ul>

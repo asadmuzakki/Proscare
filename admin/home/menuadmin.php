@@ -21,10 +21,10 @@
    <div class="header">
       <img src="../assets/home/ProsCare Logo.png" alt="logo">
       <ul class="nav">
-          <li><a href="#"> Home </a></li>
-          <li><a href="#"> Menu </a></li>
-          <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
-          <li><a href="../../loginProscare/logout.php"> Logout </a></li>
+         <li><a href="../../customer/Homepage.php"> Home </a></li>
+         <li><a href="menuadmin.php"> Menu </a></li>
+         <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+         <li><a href="../../loginProscare/logout.php"> Logout </a></li>
       </ul>
    </div>
    
@@ -52,7 +52,7 @@
       
       <div class="content-item">
          <div class="card">
-            <a href="testimoni.php">
+            <a href="../transaksi/transaksi.php">
                <img src="../assets/home/money.png" alt="">
                <p class="card-text">TRANSAKSI</p>
             </a>

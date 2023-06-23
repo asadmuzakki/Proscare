@@ -5,16 +5,8 @@
     exit;
   }
   $data = query("SELECT * FROM perawat INNER JOIN status_ketidaktersediaan ON perawat.id = status_ketidaktersediaan.id_perawat");
-  // $i = 1;
-  // foreach ($data as $row) {
-  //   if($data[$i]['cv'] === null){
-  //     $cv = "no cv.pdf";  
-  //   }else{
-  //     $cv = $data[$i]['cv'];
-  //   }
-  //   $i++;
-  // }
-  // var_dump($cv); die;
+
+  // var_dump($data); die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,9 +24,10 @@
     <div class="header">
         <img src="Assets\Proscare Logo.png" alt="logo">
         <ul class="nav">
-            <li><a href="#"> Home </a></li>
-            <li><a href="#"> Menu </a></li>
-            <li><a href="#"> Profile </a></li>
+            <li><a href="Homepage.php"> Home </a></li>
+            <li><a href="Menu.php"> Menu </a></li>
+            <li><a href="../Profile/profileCustomer.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
         </ul>
     </div>
 
@@ -54,10 +47,26 @@
         </thead>
         <tbody>
           <?php foreach ($data as $row) : ?>
+            <?php  
+            $idPerawat = $row['id_perawat'];
+            $rating = query("SELECT * FROM testimoni WHERE id_perawat = $idPerawat"); 
+            // var_dump($rating); die;
+            $array = array();
+            if(!empty($rating)){
+            foreach ($rating as $rate){
+              $array[] = $rate['rating'];
+            }
+            $sum = array_sum($array);
+            $count = count($array);
+            $avg = $sum/$count;
+          }else{
+            $avg = 0;
+          }
+            ?>
             <?php if($row['status'] === "tersedia") : ?>
           <tr>
             <td><input type="radio" name="cek" value="<?= $row['id'] ?>"></td>
-            <td>88,110</td>
+            <td><?= $avg ?></td>
             <td><?= $row['nama']?></td>
             <td><button type="button" class="cv"><a href="../Asset/cv/<?= $row['cv'] ?>">cv</a></button></td>
           </tr>

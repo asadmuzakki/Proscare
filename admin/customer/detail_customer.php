@@ -1,7 +1,16 @@
 <?php 
 require "../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+    header("Location: ../../loginProscare/index.php");
+    exit;
+ }
 $id = $_GET["id"];
 $data = query("SELECT * FROM customer WHERE id = '$id'")[0];
+if($data['photo'] === ""){
+    $photo = "nophoto.png";
+}else{
+    $photo = $data['photo'];
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +29,11 @@ $data = query("SELECT * FROM customer WHERE id = '$id'")[0];
     <div class="navbar">
         <a href="home.html"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+            <li><a href="../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>
@@ -32,7 +42,7 @@ $data = query("SELECT * FROM customer WHERE id = '$id'")[0];
         <div class="card">
             <h1>Detail Customer</h1>
             <div class="container">
-                <img src="../assets/5e71ec35a9ef81f90fdb62d90edce7f3.jpg" alt="profile-photo" style="width: 200px; height: 180px;">
+                <img src="../../Asset/image/<?= $photo ?>" alt="profile-photo" style="width: 200px; height: 180px;">
                 <div class="details">
                     <p style="font-weight: bold;">Nama</p>
                     <p><?= $data['nama'] ?></p>

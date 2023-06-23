@@ -1,6 +1,7 @@
 <?php
 session_start();
-$koneksi = mysqli_connect("localhost", "root", "", "db_proscare");
+// $koneksi = mysqli_connect("localhost", "root", "", "db_proscare");
+$koneksi = mysqli_connect("localhost", "root", "", "proscare");
 
 function query($query)
 {
@@ -16,12 +17,18 @@ function query($query)
 // admin hapus
 function hapus_perawat($id){
    global $koneksi;
-   mysqli_query($koneksi, "DELETE p, s FROM perawat as p JOIN status_ketidaktersediaan as s WHERE p.id = s.id_perawat AND p.id = $id");
+   // mysqli_query($koneksi, "DELETE p, s FROM perawat as p JOIN status_ketidaktersediaan as s WHERE p.id = s.id_perawat AND p.id = $id");
+   mysqli_query($koneksi, "DELETE FROM perawat WHERE id = $id");
    return mysqli_affected_rows($koneksi);
 }
 function hapus_customer($id){
    global $koneksi;
    mysqli_query($koneksi, "DELETE FROM customer WHERE id = $id");
+   return mysqli_affected_rows($koneksi);
+}
+function hapus_testimoni($id){
+   global $koneksi;
+   mysqli_query($koneksi, "DELETE FROM testimoni WHERE no = $id");
    return mysqli_affected_rows($koneksi);
 }
 
@@ -69,6 +76,14 @@ function edit_perawat($data){
    $sql = "UPDATE perawat SET nama = '$nama', username = '$username', password = '$password', email = '$email' WHERE id = $id";
    mysqli_query($koneksi, $sql);
 
+   return mysqli_affected_rows($koneksi);
+}
+
+// admin validasi
+function validasi($id){
+   global $koneksi;
+   $sql = "UPDATE transaksi SET status_pembayaran = 'Valid' WHERE no = $id";
+   mysqli_query($koneksi, $sql);
    return mysqli_affected_rows($koneksi);
 }
 
@@ -188,6 +203,62 @@ function registrasi($data)
    return mysqli_affected_rows($koneksi);
 }
 
+
+
+function transaksi($data){
+   global $koneksi;
+   $date = date("Y-m-d");
+   $gambar = uploadBukti();
+   $status = $_POST["status"];
+   $price = $_POST["price"];
+   $idCustomer = $_SESSION['idCustomer'];
+   // var_dump($gambar); die;
+   mysqli_query($koneksi, "INSERT INTO transaksi VALUE('', '$date', '$price', '$gambar', '$status', '1', '$idCustomer')");
+   return mysqli_affected_rows($koneksi);
+}
+function uploadBukti()
+{
+   $namaFile = $_FILES['gambar']['name'];
+   $ukuranFile = $_FILES['gambar']['size'];
+   $error = $_FILES['gambar']['error'];
+   $tempName = $_FILES['gambar']['tmp_name'];
+
+   // cek apakah tidak ada gambar yang di uploud
+   if ($error === 4) {
+      echo "<script>
+               alert('pilih gambar dahulu');
+            </script>";
+      return false;
+   }
+   
+   // hanya uploud gambar
+   $ekstenGambarValid = ['jpg', 'jpeg', 'png'];
+   $ekstenGambar = explode('.', $namaFile);
+   $ekstenGambar = strtolower(end($ekstenGambar));
+   if(!in_array($ekstenGambar, $ekstenGambarValid)){
+      echo "<script>
+               alert('yang diupload bukan gambar');
+            </script>";
+      return false;
+   }
+
+   // cek jika ukuran terlalu besar
+   if($ukuranFile > 10000000){
+      echo "<script>
+               alert('ukuran gambar terlalu besar');
+            </script>";
+      return false;
+   }
+
+   // uploud file
+   // generate nama file baru
+   $namaFileBaru = uniqid();
+   $namaFileBaru .= '.';
+   $namaFileBaru .= $ekstenGambar;
+   move_uploaded_file($tempName, '../Asset/image/'. $namaFileBaru);
+
+   return $namaFileBaru;
+}
 function upload()
 {
    $namaFile = $_FILES['gambar']['name'];
@@ -209,7 +280,7 @@ function upload()
    $ekstenGambar = strtolower(end($ekstenGambar));
    if(!in_array($ekstenGambar, $ekstenGambarValid)){
       echo "<script>
-               alert('yang diuploud bukan gambar');
+               alert('yang diupload bukan gambar');
             </script>";
       return false;
    }
@@ -273,5 +344,12 @@ function upload_cv()
    move_uploaded_file($tempName, '../../Asset/cv/'. $namaFileBaru);
 
    return $namaFileBaru;
+}
+
+function dateDiff($date1, $date2) {
+   $datetime1 = new DateTime($date1);
+   $datetime2 = new DateTime($date2);
+   $interval = $datetime1->diff($datetime2);
+   return $interval->days;
 }
 ?>

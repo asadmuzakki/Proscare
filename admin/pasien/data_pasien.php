@@ -1,5 +1,9 @@
 <?php 
 require "../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+    header("Location: ../../loginProscare/index.php");
+    exit;
+ }
 $data = query("SELECT * FROM pasien");
 ?>
 <!DOCTYPE html>
@@ -17,10 +21,11 @@ $data = query("SELECT * FROM pasien");
     <div class="navbar">
         <a href="home.html"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+            <li><a href="../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>
@@ -46,7 +51,7 @@ $data = query("SELECT * FROM pasien");
                     <?php foreach ($data as $row) : ?>
                     <tr>
                         <td style="text-align: center;"><?= $i; ?></td>
-                        <td><?= $row['nama'] ?></td>
+                        <td><?= $row['nama_pasien'] ?></td>
                         <td><?= $row['tgl_awal_sewa'] ?></td>
                         <td><?= $row['tgl_akhir_sewa'] ?></td>
                         <td style="text-align: center;"><a href="detail_pasien.php?id=<?= $row['id'] ?>"><button class="detail-button">Detail</button></a></td>

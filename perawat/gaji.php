@@ -1,5 +1,13 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['perawat'])){
+   header("Location: ../loginProscare/index.php");
+   exit;
+}
+$id = $_SESSION['idPerawat'];
+$data = query("SELECT transaksi.tgl_bayar, transaksi.nominal, transaksi.status_pembayaran FROM transaksi WHERE transaksi.id_customer IN (SELECT pasien.id_customer FROM pasien WHERE pasien.id_perawat=$id)");
+// var_dump($data); die;
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +24,11 @@ require "../loginProscare/koneksi.php";
    <div class="header">
       <img src="img/logo.png" alt="logo">
       <ul class="nav">
-          <li><a href="#"> Home </a></li>
-          <li><a href="#"> Menu </a></li>
-          <li><a href="#"> Profile </a></li>
-      </ul>
+            <li><a href="../customer/Homepage.php"> Home </a></li>
+            <li><a href="../perawat/menu.php"> Menu </a></li>
+            <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
+        </ul>
    </div>
    
    <h1>Tabel Gaji</h1>
@@ -33,30 +42,28 @@ require "../loginProscare/koneksi.php";
           </tr>
         </thead>
         <tbody>
+          <?php $i = 1 ?>
+          <?php $sum = 0 ?>
+          <?php foreach($data as $row) : ?>
+            <?php if($row['status_pembayaran'] === 'Valid') : ?>
+            <?php 
+               $price = $row['nominal'];
+               $price = $price * 0.8;
+               $formattedHarga = 'Rp. ' . number_format($price, 2, ',', '.');
+            ?>
           <tr>
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>1</td>
-            <td>08/19/2022</td>
-            <td>Rp750.000</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
+            <td><?= $i ?></td>
+            <td><?= $row['tgl_bayar'] ?></td>
+            <td><?= $formattedHarga ?></td>
          </tr>
-          <tr class="active-row">
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>2</td>
-            <td>11/06/2022</td>
-            <td>Rp1.000.000</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
-         </tr>
-         <tr>
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>3</td>
-            <td>05/25/2023</td>
-            <td>Rp1.500.000</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
-          </tr>
+         <?php $sum += $price ?>
+          <?php $i++ ?>
+          <?php endif ?>
+          <?php endforeach; ?>
         </tbody>
     </table>
-    <h1>Total Gaji Saat Ini: Rp3.250.000</h1>
+    <?php $formattedHarga = 'Rp. ' . number_format($sum, 2, ',', '.'); ?>
+    <h1>Total Gaji Saat Ini: <?= $formattedHarga ?></h1>
 
    
    <!-- <div class="timeline">

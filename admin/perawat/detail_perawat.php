@@ -1,7 +1,11 @@
 <?php 
 require "../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+    header("Location: ../../loginProscare/index.php");
+    exit;
+ }
 $id = $_GET['id'];
-$data = query("SELECT * FROM perawat WHERE id = $id")[0];
+$data = query("SELECT * FROM perawat INNER JOIN status_ketidaktersediaan ON perawat.id = $id AND status_ketidaktersediaan.id_perawat = $id")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +24,11 @@ $data = query("SELECT * FROM perawat WHERE id = $id")[0];
     <div class="navbar">
         <a href="home.html"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+            <li><a href="../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>
@@ -38,10 +43,10 @@ $data = query("SELECT * FROM perawat WHERE id = $id")[0];
                     <p style="font-weight: bold;">Username</p>
                     <p><?= $data['username'] ?></p>
                     <p style="font-weight: bold;">Status</p>
-                    <p>Status</p>
+                    <p><?= $data['status'] ?></p>
                 </div>
 
-                <a href="#"><button class="edit-button">Edit</button></a>
+                <a href="data_perawat.php"><button class="edit-button">Back</button></a>
             </div>
         </div>
     </div>

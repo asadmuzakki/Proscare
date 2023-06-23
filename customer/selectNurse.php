@@ -18,9 +18,14 @@ if (isset($_POST['nurse'])) {
 
    $sql = "INSERT INTO pasien VALUE('', '$fullname', '$date', '$gender', '$startContract', '$endContract', '$riwayat', '$information', '$address', '$treat', '$idCustomer', '$idPerawat')";
    $result = mysqli_query($koneksi, $sql);
+   $idPasien = mysqli_insert_id($koneksi);
    if ($result) {
-      header("Location: payValidation.php");
-      exit;
+      echo "<script>
+               alert('Silahkan Lanjutkan pembayaran');
+               document.location.href = 'Invoice.php?id=$idPasien';
+            </script>";
+      // header("Location: payValidation.php");
+      // exit;
    } else {
       header("Location: payValidation.php");
       exit;

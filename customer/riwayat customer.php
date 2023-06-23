@@ -1,5 +1,14 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['customer'])){
+   header("Location: ../loginProscare/index.php");
+   exit;
+}
+$id = $_SESSION['idCustomer'];
+// $data = query("SELECT * FROM pasien JOIN perawat ON pasien.id_perawat = perawat.id JOIN transaksi ON pasien.id_customer = transaksi.id_customer WHERE transaksi.id_customer = $id");
+$data = query("SELECT * FROM pasien INNER JOIN perawat ON pasien.id_perawat = perawat.id WHERE pasien.id_customer = $id");
+$transaksi = query("SELECT transaksi.nominal, transaksi.status_pembayaran FROM transaksi WHERE transaksi.id_customer IN (SELECT customer.id FROM customer WHERE customer.id IN (SELECT pasien.id_customer FROM pasien WHERE pasien.id_customer = $id))");
+// var_dump($data); die;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,19 +16,20 @@ require "../loginProscare/koneksi.php";
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Testimoni</title>
+   <title>Riwayat Anda</title>
    <link rel="stylesheet" href="style.css">
    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 </head>
 <body>
    <!-- Navbar -->
    <div class="header">
-      <img src="img/logo.png" alt="logo">
-      <ul class="nav">
-          <li><a href="#"> Home </a></li>
-          <li><a href="#"> Menu </a></li>
-          <li><a href="#"> Profile </a></li>
-      </ul>
+        <img src="Assets\Proscare Logo.png" alt="logo">
+        <ul class="nav">
+            <li><a href="Homepage.php"> Home </a></li>
+            <li><a href="Menu.php"> Menu </a></li>
+            <li><a href="../Profile/profileCustomer.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
+        </ul>
    </div>
    
    <h1>Riwayat Anda</h1>
@@ -35,82 +45,31 @@ require "../loginProscare/koneksi.php";
             </tr>
          </thead>
          <tbody>
+            <?php $i = 1 ?>
+            <?php foreach ($data as $row) : ?>
+               <?php foreach($transaksi as $trans) ?>
+               <?php $formattedHarga = 'Rp. ' . number_format($trans['nominal'], 2, ',', '.'); ?>
             <tr>
-               <td>1</td>
-               <td>Dr. Tirta</td>
+               <td><?= $i ?></td>
+               <td><?= $row['nama'] ?></td>
                <td>
-                  Nama Pasien: George<br>
-                  Tanggal Lahir: 12/12/1960<br>
-                  Jenis Kelamin: Laki-laki<br>
-                  Riwayat: Asma<br>
-                  Keterangan: wnhxiqfhqkwem cfkwfkenskcmfksjfmna ewkjchfkefuamxdkajfgjwe xhfnamkfskhcfsxfksjf<br>
-                  Alamat Pasien: Jl. Sukamager No.12<br><br>
+                  Nama Pasien: <?= $row['nama_pasien'] ?><br>
+                  Tanggal Lahir: <?= $row['tgl_akhir'] ?><br>
+                  Jenis Kelamin: <?= $row['gender'] ?><br>
+                  Riwayat: <?= $row['riwayat'] ?><br>
+                  Keterangan: <?= $row['keterangan'] ?><br>
+                  Alamat Pasien: <?= $row['alamat'] ?><br><br>
                </td>
                <td>
-                  Jenis Treatment: Medium Treatment<br>
-                  Tanggal Awal: 05/05/2023<br>
-                  Tanggal Akhir: 05/11/2023<br><br>
+                  Jenis Treatment: <?= $row['jenis_treatment'] ?> Treatment<br>
+                  Tanggal Awal: <?= $row['tgl_awal_sewa'] ?><br>
+                  Tanggal Akhir: <?= $row['tgl_akhir_sewa'] ?><br><br>
                </td>
-               <td>Rp750.000</td>
-               <td>Belum Valid</td>
+               <td><?= $formattedHarga ?></td>
+               <td><?= $trans['status_pembayaran'] ?></td>
             </tr>
-            <tr>
-               <td>2</td>
-               <td>Pitchy Esabella</td>
-               <td>
-                  Nama Pasien: George<br>
-                  Tanggal Lahir: 12/12/1960<br>
-                  Jenis Kelamin: Laki-laki<br>
-                  Riwayat: Asma<br>
-                  Keterangan: wnhxiqfhqkwem cfkwfkenskcmfksjfmna ewkjchfkefuamxdkajfgjwe xhfnamkfskhcfsxfksjf<br>
-                  Alamat Pasien: Jl. Sukamager No.12<br><br>
-               </td>
-               <td>
-                  Jenis Treatment: Full Treatment<br>
-                  Tanggal Awal: 05/05/2023<br>
-                  Tanggal Akhir: 05/11/2023<br><br>
-               </td>
-               <td>Rp750.000</td>
-               <td>Valid</td>
-            </tr>
-            <tr>
-               <td>3</td>
-               <td>Dr. Tirta</td>
-               <td>
-                  Nama Pasien: Jason<br>
-                  Tanggal Lahir: 12/06/1972<br>
-                  Jenis Kelamin: Laki-laki<br>
-                  Riwayat: Asma<br>
-                  Keterangan: wnhxiqfhqkwem cfkwfkenskcmfksjfmna ewkjchfkefuamxdkajfgjwe xhfnamkfskhcfsxfksjf<br>
-                  Alamat Pasien: Jl. Puyuh No.12<br><br>
-               </td>
-               <td>
-                  Jenis Treatment: Full Treatment<br>
-                  Tanggal Awal: 05/05/2023<br>
-                  Tanggal Akhir: 05/11/2023<br><br>
-               </td>
-               <td>Rp1.750.000</td>
-               <td>Sedang Berjalan</td>
-            </tr>
-            <tr>
-               <td>4</td>
-               <td>Pitchy Esabella</td>
-               <td>
-                  Nama Pasien: Bethany<br>
-                  Tanggal Lahir: 09/12/1975<br>
-                  Jenis Kelamin: Perempuan<br>
-                  Riwayat: Asma<br>
-                  Keterangan: wnhxiqfhqkwem cfkwfkenskcmfksjfmna ewkjchfkefuamxdkajfgjwe xhfnamkfskhcfsxfksjf<br>
-                  Alamat Pasien: Jl. Malik Ibrahim No.12<br><br>
-               </td>
-               <td>
-                  Jenis Treatment: Small Treatment<br>
-                  Tanggal Awal: 05/05/2023<br>
-                  Tanggal Akhir: 05/11/2023<br><br>
-               </td>
-               <td>Rp1.750.000</td>
-               <td>Selesai</td>
-            </tr>
+            <?php $i++ ?>
+            <?php endforeach; ?>
          </tbody>
       </table>
 

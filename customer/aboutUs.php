@@ -1,6 +1,3 @@
-<?php 
-require "../loginProscare/koneksi.php";
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,22 +13,15 @@ require "../loginProscare/koneksi.php";
 <div class="header">
     <img src="Assets\Proscare Logo.png" alt="logo">
     <ul class="nav">
-        <li><a href="#"> Home </a></li>
-        <li><a href="#"> Menu </a></li>
-        <li><a href="#"> Profile </a></li>
+        <li><a href="Homepage.php"> Home </a></li>
     </ul>
 </div>
 
 <div class="temp">
-
     <div class="content">
         <div class="heading">
             <div style="width: 70%;">
             <h2>We strive to help families find the right caregiver to help an elderly loved one stay safely and comfortably at home.</h2>
-            <div class="stsbutton">
-                <div><h3><a href="#" class="button">HIRE A CAREGIVER</a></h3></div>
-                <div><h3><a href="#" class="button">GET A CAREGIVING JOB</a></h3></div>
-            </div>
         </div>
         <div>
             <img src="pngwing 2.png" alt="" style="height: 400px;">
@@ -51,9 +41,8 @@ require "../loginProscare/koneksi.php";
             
          Our referral service is for informational purposes only. We do not endorse the senior care service providers in our directory. Families are encouraged to read expert information and reviews from other consumers, go on tours, and interview extensively to make sure that a provider is the right fit for you or your loved one. <br><br>
          
-         Our vast network of providers helps families across the Indonesian by referring ProsCare from these and other reputable providers: <br><br></p>
+         <br><br></p>
          
-         <img src="image 1.png" alt="">
       </div>
       <br><br><br><br>
    </div>

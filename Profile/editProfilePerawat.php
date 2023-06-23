@@ -1,5 +1,9 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['perawat'])){
+    header("Location: ../loginProscare/index.php");
+    exit;
+ }
 $id = $_SESSION['idPerawat'];
 $data = query("SELECT * FROM perawat INNER JOIN status_ketidaktersediaan ON perawat.id = $id AND status_ketidaktersediaan.id_perawat = $id")[0];
 if($data['photo'] === null){
@@ -23,7 +27,7 @@ if($data['cv'] === null){
 
     <link rel="stylesheet" href="css/editProfilePerawat.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <title>Profile</title>
+    <title>Edit Profile Perawat</title>
 </head>
 
 <body>
@@ -31,10 +35,11 @@ if($data['cv'] === null){
     <div class="navbar">
         <a href="#"><img src="../loginProscare/img/logo web.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../customer/Homepage.php"> Home </a></li>
+            <li><a href="../perawat/menu.php"> Menu </a></li>
+            <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>

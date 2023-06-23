@@ -1,5 +1,12 @@
 <?php 
 require "../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+    header("Location: ../../loginProscare/index.php");
+    exit;
+ }
+$id = $_GET['id'];
+$testimoni = query("SELECT * FROM testimoni JOIN customer ON testimoni.id_customer = customer.id WHERE testimoni.no = $id")[0];
+$perawat = query("SELECT * FROM testimoni JOIN perawat ON testimoni.id_perawat = perawat.id WHERE testimoni.no = $id")[0];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,10 +25,11 @@ require "../../loginProscare/koneksi.php";
     <div class="navbar">
         <a href="home.html"><img src="../assets/Menu/logo.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
+            <li><a href="../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>
@@ -33,15 +41,15 @@ require "../../loginProscare/koneksi.php";
             <div class="container">
                 <div class="details">
                     <p style="font-weight: bold;">No Testimoni</p>
-                    <p>No Testimoni</p>
+                    <p><?= $testimoni['no'] ?></p>
                     <p style="font-weight: bold;">Nama Customer</p>
-                    <p>Nama Customer</p>
+                    <p><?= $testimoni['nama'] ?></p>
                     <p style="font-weight: bold;">Nama Perawat</p>
-                    <p>Nama Perawat</p>
+                    <p><?= $perawat['nama'] ?></p>
                     <p style="font-weight: bold;">Feedback</p>
-                    <p>Feedback</p>
+                    <p><?= $testimoni['feedback'] ?></p>
                     <p style="font-weight: bold;">Rating</p>
-                    <p>Rating</p>
+                    <p><?= $testimoni['rating'] ?></p>
                 </div>
             </div>
         </div>

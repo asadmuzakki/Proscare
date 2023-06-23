@@ -1,5 +1,9 @@
 <?php 
 require "../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+  header("Location: ../../loginProscare/index.php");
+  exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +12,17 @@ require "../../loginProscare/koneksi.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/payValidation.css">
+    <link rel="stylesheet" href="payValidation.css">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
      <!-- Navbar -->
      <div class="header">
-        <img src="Assets\Proscare Logo.png" alt="logo">
+        <img src="../assets/login/logo web.png" alt="logo">
         <ul class="nav">
-            <li><a href="#"> Home </a></li>
-            <li><a href="#"> Menu </a></li>
-            <li><a href="#"> Profile </a></li>
+            <li><a href="../../customer/Homepage.php"> Home </a></li>
+            <li><a href="../../admin/home/menuadmin.php"> Menu </a></li>
+            <li><a href="../../Profile/profileAdmin.php"> Profile </a></li>
         </ul>
     </div>
 

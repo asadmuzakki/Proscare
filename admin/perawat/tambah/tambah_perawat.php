@@ -1,5 +1,9 @@
 <?php 
 require "../../../loginProscare/koneksi.php";
+if(!isset($_SESSION['admin'])){
+    header("Location: ../../../loginProscare/index.php");
+    exit;
+ }
 if (isset($_POST["submit"])) {
     if (tambah_perawat($_POST) > 0) {
        echo "<script>
@@ -31,8 +35,9 @@ if (isset($_POST["submit"])) {
 
         <ul>
             <li><a href="../../../customer/Homepage.php">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+            <li><a href="../../../admin/home/menuadmin.php">Menu</a></li>
+            <li><a href="../../../profile/profileAdmin.php">Profile</a></li>
+            <li><a href="../../../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>

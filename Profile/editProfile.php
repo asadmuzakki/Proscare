@@ -1,5 +1,9 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['customer'])){
+    header("Location: ../loginProscare/index.php");
+    exit;
+ }
 $id = $_SESSION['idCustomer'];
 $data = query("SELECT * FROM customer WHERE id = '$id'")[0];
 if($data['photo'] === ""){
@@ -18,17 +22,19 @@ if($data['photo'] === ""){
 
     <link rel="stylesheet" href="css/editProfile.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
-    <title>Detail Customer</title>
+    <title>Edit Profile</title>
 </head>
 <body>
     
     <div class="navbar">
         <a href="#"><img src="../loginProscare/img/logo web.png" alt="" style="height: 60px;"></a>
 
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Menu</a></li>
-            <li><a href="#">Profile</a></li>
+        <ul class="nav">
+            <li><a href="../customer/Homepage.php"> Home </a></li>
+            <li><a href="../customer/Menu.php"> Menu </a></li>
+            <li><a href="../customer/rating.php"> Rating </a></li>
+            <li><a href="../Profile/profileCustomer.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
         </ul>
 
     </div>

@@ -1,5 +1,19 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['perawat'])){
+   header("Location: ../loginProscare/index.php");
+   exit;
+}
+$id = $_SESSION['idPerawat'];
+$data = query("SELECT * FROM testimoni JOIN customer ON testimoni.id_customer = customer.id WHERE testimoni.id_perawat = $id");
+$rating = query("SELECT rating FROM testimoni WHERE id_perawat = $id");
+$array = array();
+foreach($rating as $row){
+  $array[] = $row['rating'];
+}
+$sum = array_sum($array);
+$count = count($array);
+$avg = $sum/$count;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,9 +30,10 @@ require "../loginProscare/koneksi.php";
    <div class="header">
       <img src="img/logo.png" alt="logo">
       <ul class="nav">
-          <li><a href="#"> Home </a></li>
-          <li><a href="#"> Menu </a></li>
-          <li><a href="#"> Profile </a></li>
+            <li><a href="../customer/Homepage.php"> Home </a></li>
+            <li><a href="../perawat/menu.php"> Menu </a></li>
+            <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
+            <li><a href="../loginProscare/logout.php"> Logout </a></li>
       </ul>
    </div>
    
@@ -29,37 +44,23 @@ require "../loginProscare/koneksi.php";
             <th>No.</th>
             <th>Nama Customer</th>
             <th>Feedback</th>
-            <th>Rating (n/10)</th>
+            <th>Rating (n/5)</th>
           </tr>
         </thead>
         <tbody>
+          <?php $i=1 ?>
+          <?php foreach ($data as $row):?>
           <tr>
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>1</td>
-            <td>Rita Nasution</td>
-            <td>Ramah dan rajin</td>
-            <td>8</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
+            <td><?= $i ?></td>
+            <td><?= $row['nama'] ?></td>
+            <td><?= $row['feedback'] ?></td>
+            <td><?= $row['rating'] ?></td>
           </tr>
-          <tr class="active-row">
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>2</td>
-            <td>Ani Wijaya</td>
-            <td>Baik,,, ramah sekali</td>
-            <td>9</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
-          </tr>
-          <tr>
-            <!-- <td><input type="radio" name="cek"></td> -->
-            <td>3</td>
-            <td>Stephanie Yudhoyono</td>
-            <td>Rajin, selalu datang tepat waktu</td>
-            <td>9</td>
-            <!-- <td><button type="button" class="cv"><a href="#">cv</a></button></td> -->
-          </tr>
+          <?php $i++ ?>
+          <?php endforeach; ?>
         </tbody>
     </table>
-    <h1>Rating Saat Ini: 8.6</h1>
+    <h1>Rating Saat Ini: <?= $avg ?></h1>
 
    
    <!-- <div class="timeline">

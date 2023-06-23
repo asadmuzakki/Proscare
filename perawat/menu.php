@@ -1,5 +1,9 @@
 <?php 
 require "../loginProscare/koneksi.php";
+if(!isset($_SESSION['perawat'])){
+   header("Location: ../loginProscare/index.php");
+   exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,10 +20,10 @@ require "../loginProscare/koneksi.php";
    <div class="header">
       <img src="img/logo.png" alt="logo">
       <ul class="nav">
-          <li><a href="#"> Home </a></li>
-          <li><a href="#"> Menu </a></li>
-          <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
-          <li><a href="../loginProscare/logout.php"> Logout </a></li>
+         <li><a href="../customer/Homepage.php"> Home </a></li>
+         <li><a href="../perawat/menu.php"> Menu </a></li>
+         <li><a href="../Profile/profilePerawat.php"> Profile </a></li>
+         <li><a href="../loginProscare/logout.php"> Logout </a></li>
       </ul>
    </div>
    

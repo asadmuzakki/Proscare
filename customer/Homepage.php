@@ -16,9 +16,9 @@ require "../loginProscare/koneksi.php";
     <div class="header">
         <img src="Assets\Proscare Logo.png" alt="logo">
         <ul class="nav">
-            <li><a href="#"> Home </a></li>
-            <li><a href="#"> Layanan Kami </a></li>
-            <li><a href="#"> Tentang Kami </a></li>
+            <li><a href="Homepage.php"> Home </a></li>
+            <li><a href="learnmore.html"> Layanan Kami </a></li>
+            <li><a href="aboutUs.php"> Tentang Kami </a></li>
         </ul>
         <ul class = "start"> 
             <button type="submit"><a href="../loginProscare/index.php"> <p> Get Started </p> </a> </button>
